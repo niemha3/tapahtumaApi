@@ -25,8 +25,11 @@ namespace TapahtumaApi
       
             Contact tapahtuma = await ApiHelper.RunAsync<Contact>(url, urlParams);
 
-            Console.WriteLine(tapahtuma.name);
-        
+            Console.WriteLine(tapahtuma.name.fi.ToString());
+            Console.WriteLine(tapahtuma.info_url.ToString());
+            Console.WriteLine(tapahtuma.modified_at.Ticks.ToString());
+            Console.WriteLine(tapahtuma.opening_hours.hours[1].weekday_id.ToString());
+          
 
         }
 
