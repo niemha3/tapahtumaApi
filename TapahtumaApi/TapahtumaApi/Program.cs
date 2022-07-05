@@ -23,10 +23,10 @@ namespace TapahtumaApi
             const string url = "http://open-api.myhelsinki.fi/v1/place/1";
             string urlParams = "";
       
-            Tapahtumat tapahtuma = await ApiHelper.RunAsync<Tapahtumat>(url, urlParams);
+            Contact tapahtuma = await ApiHelper.RunAsync<Contact>(url, urlParams);
 
-            Console.WriteLine(tapahtuma.ToString());
-          
+            Console.WriteLine(tapahtuma.name);
+        
 
         }
 
