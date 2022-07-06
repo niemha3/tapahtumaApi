@@ -30,6 +30,7 @@ namespace TapahtumaApi
                 Console.WriteLine(" " + item.name.fi);
                 Console.WriteLine("\n " + item.description.intro);
                 Console.WriteLine("\n " + item.event_dates.starting_day);
+                Console.WriteLine("\n " + item.location.address.street_address);
 
 
                 Console.WriteLine("*************************************************************************************************************************");
