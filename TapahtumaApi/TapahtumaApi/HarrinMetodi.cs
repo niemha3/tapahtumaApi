@@ -11,19 +11,36 @@ namespace TapahtumaApi
     {
     public static async Task HarrinMetodi() 
     {
-        //Console.WriteLine("Anna päivämäärä tapahtumalle id: ");
-        //string inputId = Console.ReadLine();
+            //Selvitä miten etsiä päivämäärä niin että koko päivä, eli ignoraa kellon ajan
 
-        const string url = "http://open-api.myhelsinki.fi/v1/events/";
-        string urlParams = "";
+            Console.WriteLine("Anna päivämäärä tapahtumalle esim.(01/01/2000) : ");
+            string inputDate = Console.ReadLine();
+            DateTime eventDate = DateTime.Parse(inputDate);
+            Console.WriteLine(eventDate);
+          
+            const string url = "http://open-api.myhelsinki.fi/v1/events/";
+            string urlParams = "";
 
-        Eventlist tapahtumaList = await ApiHelper.RunAsync<Eventlist>(url, urlParams);
+            Eventlist tapahtumaList = await ApiHelper.RunAsync<Eventlist>(url, urlParams);
 
-            foreach (Datum d in tapahtumaList.data)
+            var tapahtumatByDate = tapahtumaList.data.Where(date => date.event_dates.starting_day >= eventDate && date.event_dates.starting_day < eventDate.AddDays(1));
+
+            foreach (var item in tapahtumatByDate)
             {
-                Console.WriteLine(d.name.fi + " " + d.event_dates.starting_day);
+                Console.WriteLine(" " + item.name.fi);
+                Console.WriteLine("\n " + item.description.intro);
+                Console.WriteLine("\n " + item.event_dates.starting_day);
+
+
+                Console.WriteLine("*************************************************************************************************************************");
             }
-           
+
+
+            //foreach (Datum d in tapahtumaList.data)
+            //{
+            //    Console.WriteLine(d.name.fi + " " + d.event_dates.starting_day);
+            //}
+
             //Console.WriteLine(tapahtuma2.name.fi.ToString());
             //Console.WriteLine(tapahtuma2.info_url.ToString());
             //Console.WriteLine(tapahtuma2.modified_at.Ticks.ToString());
