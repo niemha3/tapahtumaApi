@@ -12,37 +12,45 @@ namespace TapahtumaApi
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
+           
+            int valikko;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
                "1. \n" +
                "2.\n" +
                "3.\n" +
-               "4. Jere metodi\n" +
+               "4. Paikallisia hesan urheilumahdollisuuksi\n" +
                "5. Poistua sovelluksesta \n");
-            int valikko = Convert.ToInt32(Console.ReadLine());
-            switch (valikko)
-            {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    Console.Clear();
-                    await Jere.JerenMetodi();
-                    Console.ReadLine();
-                    break;
-                case 5:
-                    Console.Clear();
-                    Jere.MenoMetodi();
-                    break;
-                default:
-                    Console.Clear();
-                    Console.WriteLine("\nValitse oikea numero\n");
-                    break;
+                valikko = Convert.ToInt32(Console.ReadLine());
+                switch (valikko)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        Console.Clear();
+                        await Jere.JerenMetodi();
+                        Console.ReadLine();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        Jere.MenoMetodi();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("\nValitse oikea numero\n");
+                        break;
+                }
+                
             }
-           // await GetTapahtumaInfo();
-        
+            while (valikko != 5);
+            // await GetTapahtumaInfo();
+
             //await Harri.HarrinMetodi();
             //Console.ReadLine();
             //await Jere.JerenMetodi();
