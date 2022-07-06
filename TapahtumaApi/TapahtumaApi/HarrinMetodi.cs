@@ -11,12 +11,10 @@ namespace TapahtumaApi
     {
     public static async Task HarrinMetodi() 
     {
-            //Selvitä miten etsiä päivämäärä niin että koko päivä, eli ignoraa kellon ajan
-
-            Console.WriteLine("Anna päivämäärä tapahtumalle esim.(01/01/2000) : ");
+            Console.WriteLine("Anna päivämäärä tapahtumalle esim.(01/01/2000): ");
             string inputDate = Console.ReadLine();
             DateTime eventDate = DateTime.Parse(inputDate);
-            Console.WriteLine(eventDate);
+           
           
             const string url = "http://open-api.myhelsinki.fi/v1/events/";
             string urlParams = "";
