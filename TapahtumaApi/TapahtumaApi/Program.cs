@@ -12,11 +12,41 @@ namespace TapahtumaApi
     {
         static async Task Main(string[] args)
         {
-           await GetTapahtumaInfo();
+            Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
+               "1. \n" +
+               "2.\n" +
+               "3.\n" +
+               "4. Jere metodi\n" +
+               "5. Poistua sovelluksesta \n");
+            int valikko = Convert.ToInt32(Console.ReadLine());
+            switch (valikko)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    Console.Clear();
+                    await Jere.JerenMetodi();
+                    Console.ReadLine();
+                    break;
+                case 5:
+                    Console.Clear();
+                    Jere.MenoMetodi();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("\nValitse oikea numero\n");
+                    break;
+            }
+           // await GetTapahtumaInfo();
         
-            await Harri.HarrinMetodi();
-            Console.ReadLine();
-            
+            //await Harri.HarrinMetodi();
+            //Console.ReadLine();
+            //await Jere.JerenMetodi();
+
         }
 
 
@@ -26,15 +56,11 @@ namespace TapahtumaApi
             
             const string url = "http://open-api.myhelsinki.fi/v1/place/1";
             string urlParams = "";
-      
-            //Tapahtumat tapahtuma = await ApiHelper.RunAsync<Tapahtumat>(url, urlParams);
 
-            //Console.WriteLine(tapahtuma.name.fi.ToString());
-            //Console.WriteLine(tapahtuma.info_url.ToString());
-            //Console.WriteLine(tapahtuma.modified_at.Ticks.ToString());
-            //Console.WriteLine(tapahtuma.opening_hours.hours[1].weekday_id.ToString());
-          
 
+           
+               
+            }
         }
 
         public static class ApiHelper
@@ -82,4 +108,4 @@ namespace TapahtumaApi
 
         }
     }
-}
+
