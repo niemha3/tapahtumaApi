@@ -146,8 +146,6 @@ namespace TapahtumaApi
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         string textToEnter = @"
 
-
-
      /$$$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$$$$$$ 
     | $$_____/| $$$ | $$|__  $$__/| $$_____/| $$__  $$
     | $$      | $$$$| $$   | $$   | $$      | $$  \ $$
@@ -157,29 +155,22 @@ namespace TapahtumaApi
     | $$$$$$$$| $$ \  $$   | $$   | $$$$$$$$| $$  | $$
     |________/|__/  \__/   |__/   |________/|__/  |__/
                                                            
-                                        
-                                        
-                                       
-                                                  
-
-
                 ";
                 Console.Write(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
                 Thread.Sleep(50);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Read();
-
-
                         break;
                     default:
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("\t\t|||||||||||||||||||||||");
+                        Console.WriteLine("\n\n\n\n\n\t\t|||||||||||||||||||||||");
                         Console.WriteLine("\t\t|         !           |");
                         Console.WriteLine("\t\t|    VÄÄRÄ VALINTA    |");
                         Console.WriteLine("\t\t|         !           |");
                         Console.WriteLine("\t\t|||||||||||||||||||||||\n\n");
                         Console.ForegroundColor = ConsoleColor.White;
+                        Console.ReadKey();
                         break;
                 }
             }
