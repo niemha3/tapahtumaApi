@@ -1,4 +1,4 @@
-﻿
+﻿/*
 using System;
 
 
@@ -13,7 +13,7 @@ namespace TapahtumaApi
     public DateTime modified_at { get; set; }
     public Location location { get; set; }
     public Description description { get; set; }
-    public Tag[] tags { get; set; }
+   public Tag[] tags { get; set; }
     public Opening_Hours opening_hours { get; set; }
     public object extra_searchwords { get; set; }
 }
@@ -76,3 +76,4 @@ public class Tag
 
 
 }
+*/

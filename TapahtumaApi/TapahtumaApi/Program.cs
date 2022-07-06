@@ -12,6 +12,8 @@ namespace TapahtumaApi
         static async Task Main(string[] args)
         {
            await GetTapahtumaInfo();
+           
+           await Jere.JerenMetodi();
             Console.ReadLine();
         }
 
@@ -23,12 +25,11 @@ namespace TapahtumaApi
             const string url = "http://open-api.myhelsinki.fi/v1/place/1";
             string urlParams = "";
       
-            Tapahtumat tapahtuma = await ApiHelper.RunAsync<Tapahtumat>(url, urlParams);
+           // Tapahtumat tapahtuma = await ApiHelper.RunAsync<Tapahtumat>(url, urlParams);
 
-            Console.WriteLine(tapahtuma.name.fi.ToString());
-            Console.WriteLine(tapahtuma.info_url.ToString());
-            Console.WriteLine(tapahtuma.modified_at.Ticks.ToString());
-            Console.WriteLine(tapahtuma.opening_hours.hours[1].weekday_id.ToString());
+            //Console.WriteLine(tapahtuma.name.ToString());
+                
+                
           
 
         }
