@@ -21,13 +21,10 @@ namespace TapahtumaApi
  | |__| | |__  | |    | (___   | | |  \| | ' /  | || |      | |    | |   \ \_/ / 
  |  __  |  __| | |     \___ \  | | | . ` |  <   | || |      | |    | |    \   /  
  | |  | | |____| |____ ____) |_| |_| |\  | . \ _| || |____ _| |_   | |     | |   
- |_|  |_|______|______|_____/|_____|_| \_|_|\_\_____\_____|_____|  |_|     |_|   
-                                                                                 
-                                                                                 
-                                                                                 
-                ";
+ |_|  |_|______|______|_____/|_____|_| \_|_|\_\_____\_____|_____|  |_|     |_|   ";
             Console.Write(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nby Milan Jaff ");
 
             
             
@@ -37,12 +34,12 @@ namespace TapahtumaApi
             do
             {
                 
-                Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
-               "1. \n" +
-               "2.\n" +
-               "3.\n" +
-               "4. Paikallisia hesan urheilumahdollisuuksi\n" +
-               "5. Poistua sovelluksesta \n");
+                Console.WriteLine("\n\n\t\t\tValitse seuraavista vaihtoehdoista\n\n" +
+               "\t1. \n" +
+               "\t2.\n" +
+               "\t3.\n" +
+               "\t4. Paikallisia hesan urheilumahdollisuuksi\n" +
+               "\t5. Poistua sovelluksesta \n");
                 valikko = Convert.ToInt32(Console.ReadLine());
                 switch (valikko)
                 {
@@ -72,16 +69,13 @@ namespace TapahtumaApi
                         Console.WriteLine("\t\t|||||||||||||||||||||||\n\n");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                 }
                 
             }
             while (valikko != 5);
-            // await GetTapahtumaInfo();
-
-            //await Harri.HarrinMetodi();
-            //Console.ReadLine();
-            //await Jere.JerenMetodi();
+            
 
         }
 
