@@ -90,7 +90,6 @@ namespace TapahtumaApi
                     default:
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        
                         Console.WriteLine("\n\n\n\n\n\t\t|||||||||||||||||||||||");
                         Console.WriteLine("\t\t|         !           |");
                         Console.WriteLine("\t\t|    VÄÄRÄ VALINTA    |");
