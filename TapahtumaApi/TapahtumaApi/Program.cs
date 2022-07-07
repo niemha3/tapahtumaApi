@@ -39,7 +39,7 @@ namespace TapahtumaApi
                 
                 Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
                "1. \n" +
-               "2.Aktiviteettihaku\n" +
+               "2. Aktiviteettihaku\n" +
                "3.\n" +
                "4. Paikallisia hesan urheilumahdollisuuksi\n" +
                "5. Poistua sovelluksesta \n");
