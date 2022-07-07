@@ -27,21 +27,13 @@ namespace TapahtumaApi
                 switch (valikko)
                 {
                     case 1:
-                        await Harri.HaeAinaAukiOlevat();
-                        Console.ReadKey();
+                        
                         break;
                     case 2:
-                        Console.Clear();
-                        await Harri.HaeOstospaikat();
-                        Console.ReadKey();
+                      
                         break;
                     case 3:
-                        Console.Clear();
-                        await Harri.HarrinMetodi();
-                        Console.WriteLine("Paina jotain näppäintä jatkaaksesi.");
-                        Console.ReadKey();
-                        Console.Clear();
-
+                     
                         break;
                     case 4:
                       

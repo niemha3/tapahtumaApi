@@ -13,8 +13,8 @@ namespace TapahtumaApi
         //Haetaan kaikki paikat jotka ovat 24h auki
         public static async Task HaeAinaAukiOlevat()
         {
-            const string url = "http://open-api.myhelsinki.fi/v1/places/";
-            string urlParams = "";
+            const string url = "http://open-api.myhelsinki.fi/v1/";
+            string urlParams = "places/";
             Console.Write("Haetaan, odota hetki");
             ShowDots();
 
@@ -74,8 +74,8 @@ namespace TapahtumaApi
                 break;
             }
           
-            const string url = "http://open-api.myhelsinki.fi/v1/events/";
-            string urlParams = "";
+            const string url = "http://open-api.myhelsinki.fi/v1/";
+            string urlParams = "events/";
            
             Console.Write("Haetaan, odota hetki");
             ShowDots();
