@@ -35,28 +35,31 @@ namespace TapahtumaApi
             {
 
                 Console.WriteLine("\n\n\t\t\tValitse seuraavista vaihtoehdoista\n\n" +
-               "\t1. Hae tapahtumia päivämäärän mukaan\n" +
-               "\t2. Hae paikat, jotka ovat auki 24h\n" +
-               "\t3. Hae shoppailupaikat\n" +
-               "\t4. Paikallisia hesan urheilumahdollisuuksia\n" +
-               "\t5. Kaikki ruotsinkieliset tapahtumat kesällä 2022\n" +
-               "\t6. Tapahtumat Helsingissä huomenna\n" +
-               "\t7. Hae aktiviteetit\n" +
-               "\t8. Poistu sovellukseste\n");
+               "\t\t\t1. Hae tapahtumia päivämäärän mukaan\n" +
+               "\t\t\t2. Hae paikat, jotka ovat auki 24h\n" +
+               "\t\t\t3. Hae shoppailupaikat\n" +
+               "\t\t\t4. Paikallisia hesan urheilumahdollisuuksia\n" +
+               "\t\t\t5. Kaikki ruotsinkieliset tapahtumat kesällä 2022\n" +
+               "\t\t\t6. Tapahtumat Helsingissä huomenna\n" +
+               "\t\t\t7. Hae aktiviteetit\n\n\n" +
+               "\t\t\t8. Poistu sovellukseste\n");
 
                 valikko = Convert.ToInt32(Console.ReadLine());
                 switch (valikko)
                 {
                     case 1:
+                        Console.Clear();
                         await Harri.HaetaanTapahtumatTietyllaPvm();
                         Console.ReadKey();
                         break;
                     case 2:
+                        Console.Clear();
                         await Harri.HaeAinaAukiOlevat();
                         Console.ReadKey();
                       
                         break;
                     case 3:
+                        Console.Clear();
                         await Harri.HaeOstospaikat();
                         Console.ReadKey();
                         break;
@@ -68,14 +71,19 @@ namespace TapahtumaApi
                         Console.Clear();
                         Jere.MenoMetodi();
                         break;
-                    case 6: await Laura.LauranMetodi();
+                    case 6:
+                        Console.Clear();
+                        await Laura.LauranMetodi();
                         Console.ReadKey();
                         break;
 
-                    case 5: await Eventit.LauranMetodi2();
+                    case 5:
+                        Console.Clear(); 
+                        await Eventit.LauranMetodi2();
                         Console.ReadKey();
                         break;
                     case 7:
+                        Console.Clear();
                         await Janne.JannenMetodi();
                         Console.ReadKey();
                         break;

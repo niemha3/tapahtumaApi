@@ -16,6 +16,7 @@ namespace TapahtumaApi
             Console.Clear();
             Console.ForegroundColor
             = ConsoleColor.Magenta;
+            Console.WriteLine("\n\n\n\n\n\n");
             for (int i = 0; i < 28; i++)
             {
                 Console.Write("*");
@@ -31,12 +32,13 @@ namespace TapahtumaApi
                 Console.Write("*");
                 Thread.Sleep(22);
             }
+            Console.WriteLine("\n\n\n\n\n\n");
         }
         public static async Task JerenMetodi()
         {
             const string url = "http://open-api.myhelsinki.fi/v1/places/";
             string urlParams = "";
-            Rootobject tapahtumaPaikat = await ApiHelper.RunAsync<Rootobject>(url, urlParams);
+            PlacesList tapahtumaPaikat = await ApiHelper.RunAsync<PlacesList>(url, urlParams);
             int valinta;
             do
             {
@@ -60,23 +62,8 @@ namespace TapahtumaApi
                         var antiMiniGolf = from o in antifrisbee where !o.name.fi.ToLower().Contains("mini") select o;
                         var antiHohtoGolf = from o in antiMiniGolf where !o.name.fi.ToLower().Contains("hohto") select o;
 
-
-
-
-                        var isoOngelma = from o in tapahtumaPaikat.data where o.opening_hours.hours != null select o;
-
-                        var ongelma = from o in isoOngelma where o.opening_hours.hours[3].open24h == true  select o ;
-
-
-                        foreach( var i in ongelma)
-                        {
-                            Console.WriteLine(i.name.fi);
-                            
-                        }
-                        
-
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        //Console.Clear();
+                        Console.Clear();
                 Console.WriteLine("*********************************************************");
                         
                 foreach (var i in antiHohtoGolf)
@@ -184,7 +171,7 @@ namespace TapahtumaApi
                 Console.Write(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
                 Thread.Sleep(50);
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Read();
+                        Console.ReadKey();
                         Console.Clear();
                         break;
                     default:

@@ -18,12 +18,14 @@ namespace TapahtumaApi
 			Eventlist eventsNow = await ApiHelper.RunAsync<Eventlist>(url, urlParams);
 
 			//var tapahtumatNyt = eventsNow.data.Where(date.event_dates.starting_day || date.event_dates.ending_day == DateTime.Now);
-			var tapahtumatKohta = from i in eventsNow.data where i.event_dates.starting_day >= DateTime.Now && i.event_dates.ending_day <= DateTime.Now.AddDays(1) select i;
+			var tapahtumatKohta = from i in eventsNow.data where i.event_dates.starting_day >= DateTime.Now && i.event_dates.ending_day < DateTime.Now.AddDays(1) select i;
 
 			foreach (var tapahtumat in tapahtumatKohta)
 			{
 				Console.WriteLine(tapahtumat.name.fi + "\n");
-				Console.WriteLine(tapahtumat.description.body + "\n");
+				Console.WriteLine(tapahtumat.description.body.Replace("<br>", "")
+					.Replace("<p>", "").Replace("<span>", "").Replace("<br />", "")
+					.Replace("</span>", "").Replace("</p>", "").Replace("&nbsp;", "" + "\n"));
 				Console.WriteLine(tapahtumat.event_dates.starting_day + "-" + tapahtumat.event_dates.ending_day + "\n");
 
 				Console.WriteLine("*********************************************************");

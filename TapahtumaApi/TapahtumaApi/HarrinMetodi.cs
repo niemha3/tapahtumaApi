@@ -61,14 +61,14 @@ namespace TapahtumaApi
             {
                 try
                 {
-                    Console.WriteLine("Anna päivämäärä tapahtumalle esim.(01/01/2000): ");
+                    Console.WriteLine("\t\t\tAnna päivämäärä tapahtumalle esim.(01/01/2000): ");
                     string inputDate = Console.ReadLine();
                     eventDate = DateTime.Parse(inputDate);
                 }
 
                 catch (FormatException)
                 {
-                    Console.WriteLine("Syötä päivämäärä oikeassa muodossa pp/kk/vvvv");
+                    Console.WriteLine("\t\t\tSyötä päivämäärä oikeassa muodossa pp/kk/vvvv");
                     continue;
                 }
                 break;
@@ -77,7 +77,7 @@ namespace TapahtumaApi
             const string url = "http://open-api.myhelsinki.fi/v1/";
             string urlParams = "events/";
            
-            Console.Write("Haetaan, odota hetki");
+            Console.Write("\t\t\tHaetaan, odota hetki");
             ShowDots();
             Eventlist tapahtumaList = await ApiHelper.RunAsync<Eventlist>(url, urlParams);
 
@@ -105,12 +105,12 @@ namespace TapahtumaApi
                 catch (NullReferenceException)
                 {
 
-                    Console.WriteLine("Haetulla päivämäärällä ei löytynyt tapahtumia.");
+                    Console.WriteLine("\t\t\tHaetulla päivämäärällä ei löytynyt tapahtumia.");
                     continue;
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Jotain meni pieleen.");
+                    Console.WriteLine("\t\t\tJotain meni pieleen.");
                     continue;
 
                 }
