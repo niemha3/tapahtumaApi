@@ -38,7 +38,7 @@ namespace TapahtumaApi
                "\t\t\t1. Hae tapahtumia päivämäärän mukaan\n" +
                "\t\t\t2. Hae paikat, jotka ovat auki 24h\n" +
                "\t\t\t3. Hae shoppailupaikat\n" +
-               "\t\t\t4. Paikallisia hesan urheilumahdollisuuksia\n" +
+               "\t\t\t4. Paikkoja jonne viedä Jere treffeille hesoissa\n" +
                "\t\t\t5. Kaikki ruotsinkieliset tapahtumat kesällä 2022\n" +
                "\t\t\t6. Tapahtumat Helsingissä huomenna\n" +
                "\t\t\t7. Hae aktiviteetit\n\n\n" +
@@ -109,19 +109,7 @@ namespace TapahtumaApi
             
 
         }
-
-
-
-        public static async Task GetTapahtumaInfo()
-        {
-            
-            const string url = "http://open-api.myhelsinki.fi/v1/place/1";
-            string urlParams = "";
-
-
-           
-               
-            }
+       
         }
 
         public static class ApiHelper
