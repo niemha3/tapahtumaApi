@@ -84,8 +84,8 @@ namespace TapahtumaApi
             var tapahtumatByDate = tapahtumaList.data.Where(date => date.event_dates.starting_day >= eventDate && date.event_dates.starting_day < eventDate.AddDays(1));
 
             while (true)
-            {
 
+            {
                 try
                 {
                     foreach (var item in tapahtumatByDate)
