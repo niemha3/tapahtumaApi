@@ -18,7 +18,7 @@ namespace TapahtumaApi
                 Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
                    "1. \n" +
                    "2.\n" +
-                   "3.Etsi tapahtumia tietyllä päivämäärällä\n" +
+                   "3. Etsi tapahtumia tietyllä päivämäärällä\n" +
                    "4. Jere metodi\n" +
                    "5. Poistua sovelluksesta \n");
                    valikko = Convert.ToInt32(Console.ReadLine());
@@ -27,8 +27,13 @@ namespace TapahtumaApi
                 switch (valikko)
                 {
                     case 1:
+                        await Harri.HaeAinaAukiOlevat();
+                        Console.ReadKey();
                         break;
                     case 2:
+                        Console.Clear();
+                        await Harri.HaeOstospaikat();
+                        Console.ReadKey();
                         break;
                     case 3:
                         Console.Clear();
@@ -39,9 +44,7 @@ namespace TapahtumaApi
 
                         break;
                     case 4:
-                        Console.Clear();
-                        await Jere.JerenMetodi();
-                        Console.ReadLine();
+                      
                         break;
                     case 5:
                         Console.Clear();

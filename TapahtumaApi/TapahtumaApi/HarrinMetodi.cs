@@ -10,8 +10,52 @@ namespace TapahtumaApi
 {
     public class Harri
     {
-    public static async Task HarrinMetodi() 
+        //Haetaan kaikki paikat jotka ovat 24h auki
+        public static async Task HaeAinaAukiOlevat()
+        {
+            const string url = "http://open-api.myhelsinki.fi/v1/places/";
+            string urlParams = "";
+            Console.Write("Haetaan, odota hetki");
+            ShowDots();
+
+            PlacesList paikkaLista = await ApiHelper.RunAsync<PlacesList>(url, urlParams);
+            var aukioloAjat = from o in paikkaLista.data where o.opening_hours.hours != null select o;
+            var ainaAuki = from o in aukioloAjat where o.opening_hours.hours[3].open24h == true select o;
+                                 
+            Console.WriteLine("Nämä paikat ovat auki 24h");
+            foreach (var item in ainaAuki)
+            {
+                Console.WriteLine("\n" + item.name.fi);
+                Console.WriteLine("\n" + item.description.body);
+                Console.WriteLine("\n" + item.location.address.street_address);
+                Console.WriteLine("\n***********************************************");
+            }
+
+        }
+
+        // Haetaan kaikki shoppailupaikat
+        public static async Task HaeOstospaikat()
+        {
+            const string url = "http://open-api.myhelsinki.fi/v1/";
+            string urlParams = "places/?tags_search=SHOPPING";
+
+            Console.Write("Haetaan, odota hetki");
+            ShowDots();
+            PlacesList ostosPaikat = await ApiHelper.RunAsync<PlacesList>(url, urlParams);
+            
+            foreach (var item in ostosPaikat.data)
+            {
+                Console.WriteLine(item.name.fi);
+                Console.WriteLine("\n" + item.info_url);
+                Console.WriteLine("\n" + item.location.address.street_address);
+                Console.WriteLine("\n" + item.opening_hours.hours[0].opens +  " - " + item.opening_hours.hours[0].closes);
+                Console.WriteLine("\n*********************************************************");
+                
+            }
+        }
+        public static async Task HaetaanTapahtumatTietyllaPvm() 
     {
+            // Kuinka hakea tapahtumien nimet myös
             DateTime eventDate;
             while (true)
             {
@@ -72,15 +116,7 @@ namespace TapahtumaApi
                 }
                 break;
             }
-            //foreach (Datum d in tapahtumaList.data)
-            //{
-            //    Console.WriteLine(d.name.fi + " " + d.event_dates.starting_day);
-            //}
-
-            //Console.WriteLine(tapahtuma2.name.fi.ToString());
-            //Console.WriteLine(tapahtuma2.info_url.ToString());
-            //Console.WriteLine(tapahtuma2.modified_at.Ticks.ToString());
-            //Console.WriteLine(tapahtuma2.opening_hours.hours[1].weekday_id.ToString());
+          
 
         }
 
