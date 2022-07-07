@@ -23,12 +23,20 @@ namespace TapahtumaApi
             var ainaAuki = from o in aukioloAjat where o.opening_hours.hours[3].open24h == true select o;
                                  
             Console.WriteLine("Nämä paikat ovat auki 24h");
-            foreach (var item in ainaAuki)
+            try
             {
-                Console.WriteLine("\n" + item.name.fi);
-                Console.WriteLine("\n" + item.description.body);
-                Console.WriteLine("\n" + item.location.address.street_address);
-                Console.WriteLine("\n***********************************************");
+                foreach (var item in ainaAuki)
+                {
+                    Console.WriteLine("\n" + item.name.fi);
+                    Console.WriteLine("\n" + item.description.body);
+                    Console.WriteLine("\n" + item.location.address.street_address);
+                    Console.WriteLine("\n***********************************************");
+                }
+
+            }
+            catch(Exception)
+            {
+                Console.WriteLine("Jotain meni pieleen.");
             }
 
         }
@@ -42,20 +50,32 @@ namespace TapahtumaApi
             Console.Write("Haetaan, odota hetki");
             ShowDots();
             PlacesList ostosPaikat = await ApiHelper.RunAsync<PlacesList>(url, urlParams);
-            
-            foreach (var item in ostosPaikat.data)
+            try
             {
-                Console.WriteLine(item.name.fi);
-                Console.WriteLine("\n" + item.info_url);
-                Console.WriteLine("\n" + item.location.address.street_address);
-                Console.WriteLine("\n" + item.opening_hours.hours[0].opens +  " - " + item.opening_hours.hours[0].closes);
-                Console.WriteLine("\n*********************************************************");
+                foreach (var item in ostosPaikat.data)
+                {
+                    Console.WriteLine(item.name.fi);
+                    Console.WriteLine("\n" + item.info_url);
+                    Console.WriteLine("\n" + item.location.address.street_address);
+                    Console.WriteLine("\n" + item.opening_hours.hours[0].opens +  " - " + item.opening_hours.hours[0].closes);
+                    Console.WriteLine("\n*********************************************************");
                 
+                }
+            }
+
+            catch(NullReferenceException)
+            {
+                Console.WriteLine("Ostospaikkoja ei löytynyt");
+            }
+
+            catch(Exception)
+            {
+                Console.WriteLine("Jotain meni pieleen");
             }
         }
         public static async Task HaetaanTapahtumatTietyllaPvm() 
     {
-            // Kuinka hakea tapahtumien nimet myös
+           
             DateTime eventDate;
             while (true)
             {
