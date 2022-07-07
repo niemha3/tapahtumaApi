@@ -24,26 +24,32 @@ namespace TapahtumaApi
             string urlParams = "";
 
             ActivitiesList activity = await ApiHelper.RunAsync<ActivitiesList>(url, urlParams);             //mistä haetaan
-
-
-            var action = activity.data.Where(esko => esko.name.fi.Contains(haeLaji));                               //lambda-haku
-
-
-            foreach (var item in action)
+            bool jere = false;
+            var action1 = activity.data.Where(esko => esko.name.fi != null);
+            var action = action1.Where(esko => esko.name.fi.Contains(haeLaji));
+            var action2 = activity.data.Where(esko => !esko.name.fi.Contains(haeLaji));       //lambda-haku
+            if (action2 != null)
             {
-                                                                                                                    //haluttu tulostus
-                Console.WriteLine("Nimi: " + item.name.fi + "\n");
-                Console.WriteLine("Kuvaus: " + item.description.body.Replace("<br>", "").Replace("<p>", "")
-                .Replace("<span>", "").Replace("<br />", "").Replace("</span>", "").Replace("</p>", "").Replace("&nbsp;", ""));
-                Console.WriteLine("Osoite: " + item.location.address.street_address + "\n");
-                Console.WriteLine("Lisätietoja: " + item.info_url + "\n");
-                Console.WriteLine("Kesto: " + item.where_when_duration.duration + "\n");
-
-
-                Console.WriteLine("\n*****************************************************************************************\n");
-
+                jere = true;
             }
+            if (action != null)
+            {
+                foreach (var item in action)
+                {
+                    //haluttu tulostus
+                    Console.WriteLine("Nimi: " + item.name.fi + "\n");
+                    Console.WriteLine("Kuvaus: " + item.description.body.Replace("<br>", "").Replace("<p>", "")
+                    .Replace("<span>", "").Replace("<br />", "").Replace("</span>", "").Replace("</p>", "").Replace("&nbsp;", ""));
+                    Console.WriteLine("Osoite: " + item.location.address.street_address + "\n");
+                    Console.WriteLine("Lisätietoja: " + item.info_url + "\n");
+                    Console.WriteLine("Kesto: " + item.where_when_duration.duration + "\n");
 
+
+                    Console.WriteLine("\n*****************************************************************************************\n");
+
+                }
+            }
+            if (jere == true ){ Console.WriteLine("vithe"); }
 
         }
     }

@@ -41,7 +41,7 @@ namespace TapahtumaApi
             Console.WriteLine("\n\n\n\n\n");
             Console.ForegroundColor
             = ConsoleColor.DarkYellow;
-            Console.WriteLine("\t\t\t\t\t 9/10 hammaslääkäristä suosittelee!");
+            Console.WriteLine("\t\t\t\t\t\t     9/10 \n\t\t\t\t\t\thammaslääkäristä \n\t\t\t\t\t\t  suosittelee!");
             Console.WriteLine("\n\n\n\n\n\n\n");
             Console.ForegroundColor
             = ConsoleColor.Black;
