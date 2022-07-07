@@ -34,26 +34,179 @@ namespace TapahtumaApi
         }
         public static async Task JerenMetodi()
         {
-            const string url = "http://open-api.myhelsinki.fi/v1/places/" ;
-            string urlParams = "?language-filter=fi";
-            /*Eventlist tapahtumaList = await ApiHelper.RunAsync<Eventlist>(url, urlParams);
-            foreach (Datum o in tapahtumaList.data)
-            {
-
-            }*/
+            const string url = "http://open-api.myhelsinki.fi/v1/places/";
+            string urlParams = "";
             Rootobject tapahtumaPaikat = await ApiHelper.RunAsync<Rootobject>(url, urlParams);
+            int valinta;
+            do
+            {
+                Console.Clear();
 
-            var jolo = (from o in tapahtumaPaikat.data where o.source_type.name == "Allas"  select o).ToList();
-            foreach (var i in jolo)
-            {  
+                Console.WriteLine("\n\n\t\t\tHae tietoa urheilumahdollisuuksista\n\n" +
+                    "\t1. Golf\n" +
+                    "\t2. Uinti\n" +
+                    "\t3. Hyvän börstan juominen/hankinta\n\n" +
+                    "\t4. Jos haluat palata takaisin alkuun"
+                    );
+                valinta = Convert.ToInt32(Console.ReadLine());
+                switch (valinta)
+                {
+                    case 1:
 
+
+                        var golf = from o in tapahtumaPaikat.data where o.name.fi.ToLower().Contains("golf")
+                                   select o;
+                        var antifrisbee = from o in golf where !o.name.fi.ToLower().Contains("frisbee") select o;
+                        var antiMiniGolf = from o in antifrisbee where !o.name.fi.ToLower().Contains("mini") select o;
+                        var antiHohtoGolf = from o in antiMiniGolf where !o.name.fi.ToLower().Contains("hohto") select o;
+
+
+
+
+                        var isoOngelma = from o in tapahtumaPaikat.data where o.opening_hours.hours != null select o;
+
+                        var ongelma = from o in isoOngelma where o.opening_hours.hours[3].open24h == true  select o ;
+
+
+                        foreach( var i in ongelma)
+                        {
+                            Console.WriteLine(i.name.fi);
+                            
+                        }
+                        
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        //Console.Clear();
+                Console.WriteLine("*********************************************************");
+                        
+                foreach (var i in antiHohtoGolf)
+                {
+                            
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\t\t" + i.name.fi + "\n");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine("\t" + i.location.address.street_address + "\n\t");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    var stringi = i.description.body;
+                    var kalle = string.Join(Environment.NewLine, stringi.Split()
+                        .Select((word, index) => new { word, index }).GroupBy(x => x.index / 6)
+                        .Select(grp => string.Join(" ", grp.Select(x => x.word)))); /// GOOGLE TEKI 
+                    Console.WriteLine(kalle+ "\n");
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine(i.info_url);
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("\n*******************************************************\n");
+                    Console.ForegroundColor = ConsoleColor.White;
                 
-                Console.WriteLine(i.location);
+                }
+                        Console.ReadKey();
+                        break;
+                        
+                    case 2:
+                        Console.Clear();
+                        
+                        var uinti = from o in tapahtumaPaikat.data where o.name.fi.ToLower().Contains("uima") select o;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("*********************************************************");
+
+                        foreach (var i in uinti)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\t\t" + i.name.fi + "\n");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("\t" + i.location.address.street_address + "\n\t");
+                            
+                            Console.ForegroundColor = ConsoleColor.White;
+                            var stringi = i.description.body;
+                            var kalle = string.Join(Environment.NewLine, stringi.Split()
+                                .Select((word, index) => new { word, index }).GroupBy(x => x.index / 6)
+                                .Select(grp => string.Join(" ", grp.Select(x => x.word)))); /// GOOGLE TEKI 
+                            Console.WriteLine(kalle+ "\n");
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine(i.info_url);
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("\n*******************************************************\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                        }
+                        Console.ReadKey();
+                        break;
+                       
+                        
+                    case 3:
+                        Console.Clear();
+
+                        var hiihto = from o in tapahtumaPaikat.data where o.name.fi.ToLower().Contains("panimo") ||
+                                     o.name.fi.ToLower().Contains("pien") || o.name.fi.ToLower().Contains("kalja") ||
+                                     o.name.fi.ToLower().Contains("olut") || o.name.fi.ToLower().Contains("brew") || 
+                                     o.name.fi.ToLower().Contains("beer") select o;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("*********************************************************");
+
+                        foreach (var i in hiihto)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\t\t" + i.name.fi + "\n");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("\t" + i.location.address.street_address + "\n\t");
+
+                            Console.ForegroundColor = ConsoleColor.White;
+                            var stringi = i.description.body;
+                            var kalle = string.Join(Environment.NewLine, stringi.Split()
+                                .Select((word, index) => new { word, index }).GroupBy(x => x.index / 6)
+                                .Select(grp => string.Join(" ", grp.Select(x => x.word)))); /// GOOGLE TEKI 
+                            Console.WriteLine(kalle + "\n");
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine(i.info_url);
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("\n*******************************************************\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        Console.WriteLine("\n\n\t\t\t\tPalaa takaisin \n\n\t\t\t\t  painamalla ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        string textToEnter = @"
+
+     /$$$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$$$ /$$$$$$$ 
+    | $$_____/| $$$ | $$|__  $$__/| $$_____/| $$__  $$
+    | $$      | $$$$| $$   | $$   | $$      | $$  \ $$
+    | $$$$$   | $$ $$ $$   | $$   | $$$$$   | $$$$$$$/
+    | $$__/   | $$  $$$$   | $$   | $$__/   | $$__  $$
+    | $$      | $$\  $$$   | $$   | $$      | $$  \ $$
+    | $$$$$$$$| $$ \  $$   | $$   | $$$$$$$$| $$  | $$
+    |________/|__/  \__/   |__/   |________/|__/  |__/
+                                                           
+                ";
+                Console.Write(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+                Thread.Sleep(50);
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Read();
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n\n\n\n\n\t\t|||||||||||||||||||||||");
+                        Console.WriteLine("\t\t|         !           |");
+                        Console.WriteLine("\t\t|    VÄÄRÄ VALINTA    |");
+                        Console.WriteLine("\t\t|         !           |");
+                        Console.WriteLine("\t\t|||||||||||||||||||||||\n\n");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                }
             }
-          
+            while (valinta != 4);
+
 
 
         }
 
-    }
-}
+    } }
+
+

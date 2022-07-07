@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -12,18 +13,34 @@ namespace TapahtumaApi
     {
         static async Task Main(string[] args)
         {
-            int valikko;
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+            string textToEnter = @"
+  _    _ ______ _       _____ _____ _   _ _  _______ _____ _____ _________     __
+ | |  | |  ____| |     / ____|_   _| \ | | |/ /_   _/ ____|_   _|__   __\ \   / /
+ | |__| | |__  | |    | (___   | | |  \| | ' /  | || |      | |    | |   \ \_/ / 
+ |  __  |  __| | |     \___ \  | | | . ` |  <   | || |      | |    | |    \   /  
+ | |  | | |____| |____ ____) |_| |_| |\  | . \ _| || |____ _| |_   | |     | |   
+ |_|  |_|______|______|_____/|_____|_| \_|_|\_\_____\_____|_____|  |_|     |_|   ";
+            Console.Write(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nby Milan Jaff ");
+
+            
+            
+            
+ 
+       int valikko;
             do
             {
-                Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
-                   "1. \n" +
-                   "2.\n" +
-                   "3.Etsi tapahtumia tietyllä päivämäärällä\n" +
-                   "4. Jere metodi\n" +
-                   "5. Poistua sovelluksesta \n");
-                   valikko = Convert.ToInt32(Console.ReadLine());
-
-
+                
+                Console.WriteLine("\n\n\t\t\tValitse seuraavista vaihtoehdoista\n\n" +
+               "\t1. \n" +
+               "\t2.\n" +
+               "\t3.\n" +
+               "\t4. Paikallisia hesan urheilumahdollisuuksi\n" +
+               "\t5. Poistua sovelluksesta \n");
+                valikko = Convert.ToInt32(Console.ReadLine());
                 switch (valikko)
                 {
                     case 1:
@@ -31,12 +48,6 @@ namespace TapahtumaApi
                     case 2:
                         break;
                     case 3:
-                        Console.Clear();
-                        await Harri.HarrinMetodi();
-                        Console.WriteLine("Paina jotain näppäintä jatkaaksesi.");
-                        Console.ReadKey();
-                        Console.Clear();
-
                         break;
                     case 4:
                         Console.Clear();
@@ -46,22 +57,26 @@ namespace TapahtumaApi
                     case 5:
                         Console.Clear();
                         Jere.MenoMetodi();
-
-
                         break;
-
                     default:
                         Console.Clear();
-                        Console.WriteLine("\nValitse oikea numero\n");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        
+                        Console.WriteLine("\n\n\n\n\n\t\t|||||||||||||||||||||||");
+                        Console.WriteLine("\t\t|         !           |");
+                        Console.WriteLine("\t\t|    VÄÄRÄ VALINTA    |");
+                        Console.WriteLine("\t\t|         !           |");
+                        Console.WriteLine("\t\t|||||||||||||||||||||||\n\n");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                 }
-                // await GetTapahtumaInfo();
-                //await Harri.HarrinMetodi();
-                //Console.ReadLine();
-                //await Jere.JerenMetodi();
+                
             }
             while (valikko != 5);
-           
+            
+
         }
 
 
