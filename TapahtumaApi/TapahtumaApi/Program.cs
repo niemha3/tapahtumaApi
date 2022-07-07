@@ -13,17 +13,19 @@ namespace TapahtumaApi
         static async Task Main(string[] args)
         {
             Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
-               "1. \n" +
-               "2.\n" +
+               "1. Laura metodi\n" +
+               "2.Laura metodi 2\n" +
                "3.\n" +
                "4. Jere metodi\n" +
                "5. Poistua sovelluksesta \n");
             int valikko = Convert.ToInt32(Console.ReadLine());
             switch (valikko)
             {
-                case 1:
+                case 1: await Eventit.LauranMetodi2();
+                    Console.ReadKey();
                     break;
-                case 2:
+                case 2: await Laura.LauranMetodi();
+                    Console.ReadKey();
                     break;
                 case 3:
                     break;
