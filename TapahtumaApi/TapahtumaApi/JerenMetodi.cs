@@ -16,7 +16,9 @@ namespace TapahtumaApi
             Console.Clear();
             Console.ForegroundColor
             = ConsoleColor.Magenta;
+            
             Console.WriteLine("\n\n\n\n\n\n");
+            Console.Write("\t\t\t\t\t");
             for (int i = 0; i < 28; i++)
             {
                 Console.Write("*");
@@ -24,15 +26,26 @@ namespace TapahtumaApi
             }
             Console.ForegroundColor
             = ConsoleColor.Cyan;
-            Console.WriteLine("\n\tHYVÄÄ JATKOA");
+            Console.WriteLine("\n\t\t\t\t\t\tHYVÄÄ JATKOA");
             Console.ForegroundColor
             = ConsoleColor.Magenta;
+
+
+            Console.Write("\t\t\t\t\t");
             for (int i = 0; i < 28; i++)
             {
+                
                 Console.Write("*");
                 Thread.Sleep(22);
             }
-            Console.WriteLine("\n\n\n\n\n\n");
+            Console.WriteLine("\n\n\n\n\n");
+            Console.ForegroundColor
+            = ConsoleColor.DarkYellow;
+            Console.WriteLine("\t\t\t\t\t 9/10 hammaslääkäristä suosittelee!");
+            Console.WriteLine("\n\n\n\n\n\n\n");
+            Console.ForegroundColor
+            = ConsoleColor.Black;
+
         }
         public static async Task JerenMetodi()
         {
