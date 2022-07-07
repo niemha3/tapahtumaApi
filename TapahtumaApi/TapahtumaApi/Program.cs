@@ -39,7 +39,7 @@ namespace TapahtumaApi
                 
                 Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
                "1. \n" +
-               "2.\n" +
+               "2.Aktiviteettihaku\n" +
                "3.\n" +
                "4. Paikallisia hesan urheilumahdollisuuksi\n" +
                "5. Poistua sovelluksesta \n");
@@ -49,6 +49,9 @@ namespace TapahtumaApi
                     case 1:
                         break;
                     case 2:
+                        Console.Clear();
+                        await Janne.JannenMetodi();
+                        Console.ReadLine();
                         break;
                     case 3:
                         break;
