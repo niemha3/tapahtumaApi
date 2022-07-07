@@ -35,11 +35,13 @@ namespace TapahtumaApi
             {
                 
                 Console.WriteLine("\n\n\t\t\tValitse seuraavista vaihtoehdoista\n\n" +
-               "\t1. \n" +
-               "\t2.\n" +
-               "\t3.\n" +
-               "\t4. Paikallisia hesan urheilumahdollisuuksi\n" +
-               "\t5. Poistua sovelluksesta \n");
+               "\t1. Hae tapahtumia päivämäärän mukaan\n" +
+               "\t2. Hae paikat, jotka ovat auki 24h\n" +
+               "\t3. Hae shoppailupaikat\n" +
+               "\t4. Paikallisia hesan urheilumahdollisuuksia\n" +
+               "\t5. Kaikki ruotsinkieliset tapahtumat kesällä 2022\n" +
+               "\t6. Tapahtumat Helsingissä huomenna\n" +
+               "\t7. Poistu sovelluksesta\n");
                 valikko = Convert.ToInt32(Console.ReadLine());
                 switch (valikko)
                 {
@@ -56,12 +58,20 @@ namespace TapahtumaApi
                         await Harri.HaeOstospaikat();
                         Console.ReadKey();
                         break;
-                    case 4:
+                    case 4: Console.Clear();
+                        await Jere.JerenMetodi();
                       
                         break;
-                    case 5:
+                    case 7:
                         Console.Clear();
                         Jere.MenoMetodi();
+                        break;
+                    case 6: await Laura.LauranMetodi();
+                        Console.ReadKey();
+                        break;
+
+                    case 5: await Eventit.LauranMetodi2();
+                        Console.ReadKey();
                         break;
                     default:
                         Console.Clear();
@@ -76,10 +86,12 @@ namespace TapahtumaApi
                         Console.ReadKey();
                         Console.Clear();
                         break;
+
+                    
                 }
                 
             }
-            while (valikko != 5);
+            while (valikko != 7);
             
 
         }
