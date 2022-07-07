@@ -5,7 +5,7 @@ using System.Text;
 namespace TapahtumaApi
 {
 
-        public class Rootobject
+        public class PlacesList
         {
             public Meta meta { get; set; }
             public Datum22[] data { get; set; }

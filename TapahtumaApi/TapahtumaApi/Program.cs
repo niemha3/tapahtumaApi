@@ -44,15 +44,20 @@ namespace TapahtumaApi
                 switch (valikko)
                 {
                     case 1:
+                        await Harri.HaetaanTapahtumatTietyllaPvm();
+                        Console.ReadKey();
                         break;
                     case 2:
+                        await Harri.HaeAinaAukiOlevat();
+                        Console.ReadKey();
+                      
                         break;
                     case 3:
+                        await Harri.HaeOstospaikat();
+                        Console.ReadKey();
                         break;
                     case 4:
-                        Console.Clear();
-                        await Jere.JerenMetodi();
-                        Console.ReadLine();
+                      
                         break;
                     case 5:
                         Console.Clear();
