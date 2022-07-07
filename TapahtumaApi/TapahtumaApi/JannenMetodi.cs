@@ -13,8 +13,9 @@ namespace TapahtumaApi
 
         public static async Task JannenMetodi()
         {
+            Console.WriteLine("Tervetuloa aktiviteettihakuun!\n");
 
-            Console.WriteLine("Lisää hakusana aktiviteetille:\n");
+            Console.WriteLine("Lisää hakusana aktiviteetille ja paina Enter:\n");
             string haeLaji = Console.ReadLine();
                                                                                             // aktiviteetit hakusanan perusteella
             Console.WriteLine("\n");
