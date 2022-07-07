@@ -42,24 +42,46 @@ namespace TapahtumaApi
             {
                 Console.Clear();
 
-                Console.WriteLine("Hae tietoa urheilumahdollisuuksista\n" +
-                    "1. Golf\n" +
-                    "2. Uinti\n" +
-                    "3. Hiihto\n" +
-                    "4. Jos haluat palata takaisin alkuun"
+                Console.WriteLine("\n\n\t\t\tHae tietoa urheilumahdollisuuksista\n\n" +
+                    "\t1. Golf\n" +
+                    "\t2. Uinti\n" +
+                    "\t3. Hyvän börstan juominen/hankinta\n\n" +
+                    "\t4. Jos haluat palata takaisin alkuun"
                     );
                 valinta = Convert.ToInt32(Console.ReadLine());
                 switch (valinta)
-                { 
-                case 1:
-                
-                
-                var golf = from o in tapahtumaPaikat.data where o.name.fi.Contains(" Golf") select o;
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("*********************************************************");
-
-                foreach (var i in golf)
                 {
+                    case 1:
+
+
+                        var golf = from o in tapahtumaPaikat.data where o.name.fi.ToLower().Contains("golf")
+                                   select o;
+                        var antifrisbee = from o in golf where !o.name.fi.ToLower().Contains("frisbee") select o;
+                        var antiMiniGolf = from o in antifrisbee where !o.name.fi.ToLower().Contains("mini") select o;
+                        var antiHohtoGolf = from o in antiMiniGolf where !o.name.fi.ToLower().Contains("hohto") select o;
+
+
+
+
+                        var isoOngelma = from o in tapahtumaPaikat.data where o.opening_hours.hours != null select o;
+
+                        var ongelma = from o in isoOngelma where o.opening_hours.hours[3].open24h == true  select o ;
+
+
+                        foreach( var i in ongelma)
+                        {
+                            Console.WriteLine(i.name.fi);
+                            
+                        }
+                        
+
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        //Console.Clear();
+                Console.WriteLine("*********************************************************");
+                        
+                foreach (var i in antiHohtoGolf)
+                {
+                            
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\t\t" + i.name.fi + "\n");
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -83,7 +105,7 @@ namespace TapahtumaApi
                     case 2:
                         Console.Clear();
                         
-                        var uinti = from o in tapahtumaPaikat.data where o.name.fi.Contains("uima") select o;
+                        var uinti = from o in tapahtumaPaikat.data where o.name.fi.ToLower().Contains("uima") select o;
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("*********************************************************");
 
@@ -114,7 +136,10 @@ namespace TapahtumaApi
                     case 3:
                         Console.Clear();
 
-                        var hiihto = from o in tapahtumaPaikat.data where o.name.fi.Contains("hiihto") || o.name.fi.Contains("Latu") select o;
+                        var hiihto = from o in tapahtumaPaikat.data where o.name.fi.ToLower().Contains("panimo") ||
+                                     o.name.fi.ToLower().Contains("pien") || o.name.fi.ToLower().Contains("kalja") ||
+                                     o.name.fi.ToLower().Contains("olut") || o.name.fi.ToLower().Contains("brew") || 
+                                     o.name.fi.ToLower().Contains("beer") select o;
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("*********************************************************");
 
@@ -160,6 +185,7 @@ namespace TapahtumaApi
                 Thread.Sleep(50);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Read();
+                        Console.Clear();
                         break;
                     default:
                         Console.Clear();
@@ -171,6 +197,7 @@ namespace TapahtumaApi
                         Console.WriteLine("\t\t|||||||||||||||||||||||\n\n");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                 }
             }

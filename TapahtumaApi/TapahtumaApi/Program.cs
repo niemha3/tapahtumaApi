@@ -21,13 +21,10 @@ namespace TapahtumaApi
  | |__| | |__  | |    | (___   | | |  \| | ' /  | || |      | |    | |   \ \_/ / 
  |  __  |  __| | |     \___ \  | | | . ` |  <   | || |      | |    | |    \   /  
  | |  | | |____| |____ ____) |_| |_| |\  | . \ _| || |____ _| |_   | |     | |   
- |_|  |_|______|______|_____/|_____|_| \_|_|\_\_____\_____|_____|  |_|     |_|   
-                                                                                 
-                                                                                 
-                                                                                 
-                ";
+ |_|  |_|______|______|_____/|_____|_| \_|_|\_\_____\_____|_____|  |_|     |_|   ";
             Console.Write(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\nby Milan Jaff ");
 
             
             
@@ -36,33 +33,51 @@ namespace TapahtumaApi
        int valikko;
             do
             {
-                
-                Console.WriteLine("Valitse seuraavista vaihtoehdoista\n" +
-               "1. \n" +
-               "2. Aktiviteettihaku\n" +
-               "3.\n" +
-               "4. Paikallisia hesan urheilumahdollisuuksi\n" +
-               "5. Poistua sovelluksesta \n");
+
+                Console.WriteLine("\n\n\t\t\tValitse seuraavista vaihtoehdoista\n\n" +
+               "\t1. Hae tapahtumia päivämäärän mukaan\n" +
+               "\t2. Hae paikat, jotka ovat auki 24h\n" +
+               "\t3. Hae shoppailupaikat\n" +
+               "\t4. Paikallisia hesan urheilumahdollisuuksia\n" +
+               "\t5. Kaikki ruotsinkieliset tapahtumat kesällä 2022\n" +
+               "\t6. Tapahtumat Helsingissä huomenna\n" +
+               "\t7. Hae aktiviteetit\n" +
+               "\t8. Poistu sovellukseste\n");
+
                 valikko = Convert.ToInt32(Console.ReadLine());
                 switch (valikko)
                 {
                     case 1:
+                        await Harri.HaetaanTapahtumatTietyllaPvm();
+                        Console.ReadKey();
                         break;
                     case 2:
-                        Console.Clear();
-                        await Janne.JannenMetodi();
-                        Console.ReadLine();
+                        await Harri.HaeAinaAukiOlevat();
+                        Console.ReadKey();
+                      
                         break;
                     case 3:
+                        await Harri.HaeOstospaikat();
+                        Console.ReadKey();
                         break;
-                    case 4:
-                        Console.Clear();
+                    case 4: Console.Clear();
                         await Jere.JerenMetodi();
-                        Console.ReadLine();
+                      
                         break;
-                    case 5:
+                    case 8:
                         Console.Clear();
                         Jere.MenoMetodi();
+                        break;
+                    case 6: await Laura.LauranMetodi();
+                        Console.ReadKey();
+                        break;
+
+                    case 5: await Eventit.LauranMetodi2();
+                        Console.ReadKey();
+                        break;
+                    case 7:
+                        await Janne.JannenMetodi();
+                        Console.ReadKey();
                         break;
                     default:
                         Console.Clear();
@@ -75,16 +90,15 @@ namespace TapahtumaApi
                         Console.WriteLine("\t\t|||||||||||||||||||||||\n\n");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.ReadKey();
+                        Console.Clear();
                         break;
+
+                    
                 }
                 
             }
-            while (valikko != 5);
-            // await GetTapahtumaInfo();
-
-            //await Harri.HarrinMetodi();
-            //Console.ReadLine();
-            //await Jere.JerenMetodi();
+            while (valikko != 8);
+            
 
         }
 
